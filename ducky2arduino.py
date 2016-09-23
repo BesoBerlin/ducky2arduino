@@ -133,7 +133,6 @@ for line in linesAsStringList:
 		print "Something possibly went wrong!\nPlease check the code in output.ino in the marked lines (<<<<<!!!!! CHECK FOR ERRORS HERE !!!!!>>>>>)"
 		linesAsStringList[lineNumber] = 'Keyboard.print("'+ linesAsStringList[lineNumber][0] + '");// <<<<<<<<<<<<<<<<!!!!! CHECK FOR ERRORS HERE !!!!!\n'
 
-########################################################################################### =====> add keys (ARROWS-SPACE-ENTER)+ add 
 	#add pressed Key-Options
 	if (defaultDelayFlag==True):
 		linesAsStringList[lineNumber] = linesAsStringList[lineNumber] + "delay(" + defaultDelayTime + ");\n"
