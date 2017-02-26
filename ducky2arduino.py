@@ -156,7 +156,7 @@ for line in linesAsStringList:
 #################### make an Output.ino out of the edited File ####################
 linesAsStringList.insert(0,'#include "Keyboard.h"\n//Thank You for using BESOBERLINs ducky2arduino converter!\n\nvoid setup() {\nKeyboard.begin();\ndelay(3000);\n\n')
 linesAsStringList.append("\n}\n\n\nvoid loop(){\n\n}")
-outputFile = open('output.ino', 'w')
+outputFile = open('input.ino', 'w')
 outputFile.writelines(linesAsStringList)
 outputFile.close()
 
