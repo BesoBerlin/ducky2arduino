@@ -51,9 +51,9 @@ for line in linesAsStringList:
 	if (linesAsStringList[lineNumber][:3]=="REM"):
 		linesAsStringList[lineNumber] = "//" + linesAsStringList[lineNumber][3:]
 	elif (linesAsStringList[lineNumber][:6]=="STRING"):
-		linesAsStringList[lineNumber] = 'Keyboard.print("'+ linesAsStringList[lineNumber][7:-1]+'");\n'
-		#following line for bslash is not tested yet
-		linesAsStringList[lineNumber].replace("\\",r"\\")
+		linesAsStringList[lineNumber] = linesAsStringList[lineNumber].replace("\\",r"\\")
+		linesAsStringList[lineNumber] = linesAsStringList[lineNumber].replace("\"",r"\"")		
+		linesAsStringList[lineNumber] = 'Keyboard.print("'+ linesAsStringList[lineNumber][7:-1]+'");\n'	
 	elif (linesAsStringList[lineNumber][:5]=="DELAY"):
 		linesAsStringList[lineNumber] = "delay(" + linesAsStringList[lineNumber][6:-1] + ");\n"
 	elif (linesAsStringList[lineNumber][:12]=="DEFAULTDELAY"):
@@ -159,5 +159,4 @@ linesAsStringList.append("\n}\n\n\nvoid loop(){\n\n}")
 outputFile = open('output.ino', 'w')
 outputFile.writelines(linesAsStringList)
 outputFile.close()
-
 
