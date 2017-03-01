@@ -18,26 +18,27 @@ guiFlag = False
 
 #check for pressed Option-Keys
 def checkOptions(zeile):
+	global shiftFlag 
+	global altFlag 
+	global ctrlFlag 
+	global guiFlag 
+
 	if (zeile[:5]=="SHIFT"):
-		global shiftFlag 
 		shiftFlag = True
 		return checkOptions(zeile[6:])
 	elif (zeile[:3]=="ALT"):
-		global altFlag 
 		altFlag = True
 		return checkOptions(zeile[4:])
 	elif (zeile[:4]=="CTRL"):
-		global ctrlFlag 
 		ctrlFlag = True
 		return checkOptions(zeile[5:])
 	elif (zeile[:7]=="CONTROL"):
 		ctrlFlag = True
 		return checkOptions(zeile[8:])
 	elif (zeile[:3]=="GUI"):
-		global guiFlag 
 		guiFlag = True
 		return checkOptions(zeile[4:])
-	elif (zeile[7:]=="WINDOWS"):
+	elif (zeile[:7]=="WINDOWS"):
 		guiFlag = True
 		return checkOptions(zeile[8:])
 	else:
