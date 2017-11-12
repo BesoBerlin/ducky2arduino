@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+# coding: utf-8
 
 # You may read https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Duckyscript carefully before converting.
 
