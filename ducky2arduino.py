@@ -2,12 +2,18 @@
 # coding: utf-8
 
 # You may read https://github.com/hak5darren/USB-Rubber-Ducky/wiki/Duckyscript carefully before converting.
-
+import re
 #################### read File ####################
-inputFile = open('input.txt')
-linesAsStringList = inputFile.readlines()
+inputFile = input("enter DuckyScript file or path \n")
+inputFile = open(inputFile)
+linesAsStringList_temp = inputFile.readlines()
+tempFile=[]
+for line in linesAsStringList_temp:
+    if re.search(r'REM', line) is None:
+        if re.search(r'^\s*$',line) is None:
+            tempFile.append(line)
+linesAsStringList = tempFile
 inputFile.close()
-
 #################### edit File ####################
 #declare flagVariables for keycombinations
 lineNumber = 0
@@ -134,7 +140,7 @@ for line in linesAsStringList:
 		for x in range (c) :
 			linesAsStringList[lineNumber] = linesAsStringList[lineNumber] + linesAsStringList[lineNumber-1]
 	else:
-		print "Something possibly went wrong!\nPlease check the code in output.ino in the marked lines (<<<<<!!!!! CHECK FOR ERRORS HERE !!!!!>>>>>)"
+		print ("Something possibly went wrong!\nPlease check the code in output.ino in the marked lines (<<<<<!!!!! CHECK FOR ERRORS HERE !!!!!>>>>>)")
 		linesAsStringList[lineNumber] = 'Keyboard.print("'+ linesAsStringList[lineNumber][0] + '");// <<<<<<<<<<<<<<<<!!!!! CHECK FOR ERRORS HERE !!!!!\n'
 
 	#add pressed Key-Options
@@ -158,7 +164,7 @@ for line in linesAsStringList:
 #################### make an Output.ino out of the edited File ####################
 linesAsStringList.insert(0,'#include "Keyboard.h"\n//Thank You for using BESOBERLINs ducky2arduino converter!\n\nvoid setup() {\nKeyboard.begin();\ndelay(3000);\n\n')
 linesAsStringList.append("\n}\n\n\nvoid loop(){\n\n}")
-outputFile = open('input.ino', 'w')
+outputFile = open('output.ino', 'w')
 outputFile.writelines(linesAsStringList)
 outputFile.close()
 
